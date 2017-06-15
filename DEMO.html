@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Demo</title>
+    <script src="jquery-1.10.2.js"></script>
+    <script src="jquery-ui-1.10.4.custom.js"></script>
+
+    <style>
+        .IMG_MAIN {
+            width: 100%;
+            padding:0;
+        }
+
+        #div_tool {
+            /*position:fixed;*/
+        }
+
+        .div_top_class {
+            position: fixed;
+            top: 0;
+            background:rgba(241,241,241,1);
+        }
+
+        .body_class {
+            background: rgba(241,241,241,0.9);
+        }
+
+        .div_tool-fixed {
+            /*position: fixed;
+            top: 0;*/
+            /*box-shadow: 4px 4px 5px #d3d3d3;*/
+            /*opacity: 0.9;*/
+        }
+
+        .div_TOP-display {
+            /*display:none;*/
+        }
+
+        .div_right_block {
+            width: 100%;
+            background: #fff;
+            border-bottom-left-radius: 15px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        $(function () {
+            var div_top_height = $("#div_top").height();
+
+            $("#div_content").attr("style", "margin-top:" + div_top_height + "px");
+
+            var UI_height = $("#TOP_UI").height();
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > UI_height) {
+                    $("#TOP_IMG").attr("style", "display:none")
+                }
+                else {
+                    $("#TOP_IMG").attr("style", "display:")
+                }
+            });
+
+
+            //alert("aa" + UI_height);
+        });
+
+        //$(function () {
+        //    //var div_TOP_height = document.getElementById("div_TOP").offsetTop;
+        //    var div_TOP_weight = document.getElementById("div_TOP").offsetWidth - 16;
+
+        //    var div_tool_height = document.getElementById("div_tool").offsetTop;
+        //    var div_tool_weight = document.getElementById("div_tool").offsetWidth - 16;
+
+        //    $(window).scroll(function () {
+        //        /*TOP部分*/
+        //        if (div_TOP_weight > 0)
+        //        {
+        //            $("#div_TOP").width(div_TOP_weight);
+        //        }
+
+        //        if ($(window).scrollTop() > div_tool_height) {
+        //            if (!$("#div_TOP").hasClass("div_TOP-display")) {
+        //                $("#div_TOP").addClass("div_TOP-display", 0);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            if ($("#div_TOP").hasClass("div_TOP-display")) {
+        //                $("#div_TOP").removeClass("div_TOP-display", 0);
+        //            }
+        //        }
+        //        /*UI部分*/
+        //        if (div_tool_weight > 0) {
+        //            $("#div_tool").width(div_tool_weight);
+        //        }
+
+        //        if ($(window).scrollTop() > div_tool_height) {
+        //            if (!$("#div_tool").hasClass("div_tool-fixed")) {
+        //                $("#div_tool").addClass("div_tool-fixed", 0);
+        //            }
+        //        }
+        //        else {
+        //            if ($("#div_tool").hasClass("div_tool-fixed")) {
+        //                $("#div_tool").removeClass("div_tool-fixed", 0);
+        //            }
+        //        }
+        //    });
+        //});
+    </script>
+</head>
+<body class="body_class">
+    <div style="width: 100%">
+        <div id="div_top" class="div_top_class">
+            <div class="div_top_top">
+                <img id="TOP_IMG" src="Demo/top.png" alt="頂部區塊" class="IMG_MAIN" />
+            </div>
+            <div id="TOP_UI">
+                <img src="Demo/UI.png" alt="節點區塊" class="IMG_MAIN" />
+            </div>
+        </div>
+        <div id="div_content" class="div_content_class">
+            <img src="Demo/Banner.png" alt="圖片區塊" class="IMG_MAIN" />
+            <div style="width: 100%; float: left">
+                <img src="Demo/Center.png" alt="內容區塊" class="IMG_MAIN" />
+            </div>
+            <div style="position: fixed; right: 0; top: 300px; width: 30px; background: #fff; border-top-left-radius: 15px; border-bottom-left-radius: 15px;">
+                <img id="arrows" src="Demo/arrows.png" style="width: 30px; cursor: pointer" />
+                <div id="div_right_blcok" class="div_right_block" style="display: none;">
+                    <!--<img src="Demo/bk.png" alt="浮動區塊" style="width:100%;border-radius:15px;"/>-->
+                    <img src="Demo/1.png" style="width: 60%;" />
+                    <br />
+                    <img src="Demo/2.png" style="width: 60%;" />
+                    <br />
+                    <img src="Demo/3.png" style="width: 60%;" />
+                </div>
+            </div>
+            <script>
+                $("#arrows").click(function () {
+                    $("#div_right_blcok").toggle("slow");
+                });
+            </script>
+            <div>
+                 
+                <img src="Demo/FOOT_UP.png" alt="底部區塊1" class="IMG_MAIN" />
+                <div style="text-align:center">
+                    <img id="foot_toggle" src="Demo/down.png"  style="position:absolute;z-index:999;width:50px;margin-top:-50px;cursor:pointer"/>
+                </div>
+                <img src="Demo/FOOT_CENTER_UP.png" class="IMG_MAIN"/>
+                <img id="foot_center" src="Demo/FOOT_CENTER.png" alt="底部區塊2" class="IMG_MAIN" style="display:none;"/>
+                <img src="Demo/FOOT_DOWN.png" alt="底部區塊3" class="IMG_MAIN" />
+            </div>
+            <script>
+                var i = 0
+                $("#foot_toggle").click(function () {
+                    i++                    
+                    if (i % 2 == 1) {
+                        $("#foot_toggle").attr("src", "Demo/up.png")
+                        $("#foot_center").slideDown(500);
+                    }
+                    else {
+                        $("#foot_toggle").attr("src", "Demo/down.png")
+                        $("#foot_center").slideUp(500);
+                    }
+                   // alert(i % 2)
+                });
+            </script>
+        </div>
+    </div>
+
+</body>
+</html>
